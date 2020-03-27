@@ -6,7 +6,7 @@ EXEC=profil
 all : $(EXEC)
 
 profil : main.o fonctions_ES.o timers_b.o
-		$(CC) -pg -o profil main.o fonctions_ES.o timers_b.o $(LDFLAGS)
+		$(CC) -pg -o profil $^ $(LDFLAGS)
 
 main.o : main.c
 		$(CC) -pg $(CFLAGS) -o $@ -c $^ $(LDFLAGS)

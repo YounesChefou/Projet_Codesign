@@ -20,8 +20,14 @@ void calculateLayer4(float* Layer3_Neurons_CPU, float* Layer3_Weights_CPU, float
 void calculateLayer5(float* Layer4_Neurons_CPU, float* Layer4_Weights_CPU, double* Layer5_Neurons_CPU);
 
 void InitHostMem(float *Layer1_Weights_CPU,float *Layer2_Weights_CPU, float *Layer3_Weights_CPU,float *Layer4_Weights_CPU);
+void WEItoTXT(char* nomWei, char* nomTxt);
 
 int main(int argc, char** argv){
+
+	WEItoTXT("lw1.wei", "lw1.txt");
+	WEItoTXT("lw2.wei", "lw2.txt");
+	WEItoTXT("lw3.wei", "lw3.txt");
+	WEItoTXT("lw4.wei", "lw4.txt");
 
 	float
 		Layer1_Weights_CPU[(5*5+1)*6],

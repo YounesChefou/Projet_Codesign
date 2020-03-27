@@ -35,6 +35,47 @@ void InitHostMem(float *Layer1_Weights_CPU,float *Layer2_Weights_CPU,float *Laye
 	}
 }
 
+// void WEItoTXT()
+// {
+// 	FILE* pFile1 = fopen("lw1.wei", "rb");
+// 	FILE* file = fopen("lw1.txt", "w");
+// 	float buf;
+// 	if (pFile1 != NULL)
+// 	{
+// 		int i;
+// 		for(i=0;i<156;++i){
+// 			fread(&buf, sizeof(float),1,pFile1);
+// 			fprintf(file, "%lf\n", buf);
+// 		}
+// 		fclose (pFile1);
+// 		fclose(file);
+// 	}
+//
+// 	FILE* pFile2 = fopen("lw2.wei", "rb");
+// 	FILE* file2 = fopen("lw2.txt", "w");
+// 	float bufe;
+// 	for(int j = 0; j < 7800; j++){
+// 		fread(&bufe, sizeof(float),1,pFile2);
+// 		fprintf(file2, "%lf\n", bufe);
+// 	}
+// 	fclose (pFile2);
+// 	fclose(file2);
+// }
+
+void WEItoTXT(char* nomWei, char* nomTxt){
+	FILE* pFile = fopen(nomWei, "rb");
+	FILE* file = fopen(nomTxt, "w");
+	float buf;
+	if(pFile != NULL){
+		while(!feof(pFile)){
+			fread(&buf, sizeof(float),1,pFile);
+			fprintf(file, "%lf\n", buf);
+		}
+	}
+	fclose (pFile);
+	fclose(file);
+}
+
 void readIn(float *layer1)
 {
 	FILE *fp;
