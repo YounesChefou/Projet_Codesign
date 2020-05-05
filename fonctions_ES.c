@@ -62,14 +62,19 @@ void InitHostMem(float *Layer1_Weights_CPU,float *Layer2_Weights_CPU,float *Laye
 // 	fclose(file2);
 // }
 
-void WEItoTXT(char* nomWei, char* nomTxt){
+void WEItoCOE(char* nomWei, char* nomTxt){
 	FILE* pFile = fopen(nomWei, "rb");
 	FILE* file = fopen(nomTxt, "w");
 	float buf;
+
+	fprintf(file, ";Fichier d'initilisation de RAM pour les poids\n");
+	fprintf(file, "memory_initialization_radix = 16;\n");
+	fprintf(file, "memory_initialization_vector =\n");
+	
 	if(pFile != NULL){
 		while(!feof(pFile)){
 			fread(&buf, sizeof(float),1,pFile);
-			fprintf(file, "%lf\n", buf);
+			fprintf(file, "%x\n", buf);
 		}
 	}
 	fclose (pFile);
