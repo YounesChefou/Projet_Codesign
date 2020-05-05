@@ -68,13 +68,13 @@ void WEItoCOE(char* nomWei, char* nomTxt){
 	float buf;
 
 	fprintf(file, ";Fichier d'initilisation de RAM pour les poids\n");
-	fprintf(file, "memory_initialization_radix = 16;\n");
+	fprintf(file, "memory_initialization_radix = 2;\n");
 	fprintf(file, "memory_initialization_vector =\n");
-	
+
 	if(pFile != NULL){
 		while(!feof(pFile)){
 			fread(&buf, sizeof(float),1,pFile);
-			fprintf(file, "%x\n", buf);
+			fprintf(file, "%a\n", buf);
 		}
 	}
 	fclose (pFile);

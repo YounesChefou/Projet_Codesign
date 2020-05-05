@@ -24,10 +24,10 @@ void WEItoCOE(char* nomWei, char* nomTxt);
 
 int main(int argc, char** argv){
 
-	WEItoCOE("lw1.wei", "lw1.txt");
-	WEItoCOE("lw2.wei", "lw2.txt");
-	WEItoCOE("lw3.wei", "lw3.txt");
-	WEItoCOE("lw4.wei", "lw4.txt");
+	WEItoCOE("lw1.wei", "lw1.coe");
+	WEItoCOE("lw2.wei", "lw2.coe");
+	WEItoCOE("lw3.wei", "lw3.coe");
+	WEItoCOE("lw4.wei", "lw4.coe");
 
 	float
 		Layer1_Weights_CPU[(5*5+1)*6],
