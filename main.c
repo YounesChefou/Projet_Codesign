@@ -21,8 +21,11 @@ void calculateLayer5(float* Layer4_Neurons_CPU, float* Layer4_Weights_CPU, doubl
 
 void InitHostMem(float *Layer1_Weights_CPU,float *Layer2_Weights_CPU, float *Layer3_Weights_CPU,float *Layer4_Weights_CPU);
 void WEItoCOE(char* nomWei, char* nomTxt);
+char* FLOATtoBIN(float f);
 
 int main(int argc, char** argv){
+
+	printf("La conversion donne : %s\n", FLOATtoBIN(-0.128699));
 
 	WEItoCOE("lw1.wei", "lw1.coe");
 	WEItoCOE("lw2.wei", "lw2.coe");
