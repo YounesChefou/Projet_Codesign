@@ -78,7 +78,7 @@ const char* HEXtoBIN(char h){
 
 //Permet de transformer un nombre float normé IEEE 754 écrit en hexadecimal en un nombre binaire
 // -0x1.079342p-3 => 1
-char* FLOATtoBIN(float f){
+char* FLOATtoBIN_IEEE(float f){
 	char strFloatHex[32];
 	sprintf(strFloatHex, "%a", f);
 
@@ -131,6 +131,43 @@ char* FLOATtoBIN(float f){
 	return strFloatBin;
 }
 
+char* FLOATtoBIN(float f){
+	int entier = f*1000000;
+	char* strBin = malloc(33*sizeof(char));
+	if(strBin == NULL) printf("Erreur d'allocation\n");
+
+	char chaineBin[33] = "00000000000000000000000000000000";
+
+	//Conversion en binaire
+	int absEntier = abs(entier);
+	for(int i = 31; absEntier > 0; i--){
+		chaineBin[i] = absEntier%2 + '0';
+		absEntier = absEntier/2;
+	}
+
+	printf("Chaine : %s\n", chaineBin);
+
+	//Conversion en complément à 2
+	if(entier < 0){
+		int i = 31;
+		while(chaineBin[i] != '1') i--;
+		i--;
+		for(int j = i; j >= 0; j--){
+			if(chaineBin[j] == '0'){
+				chaineBin[j] = '1';
+			}
+			else if(chaineBin[j] == '1'){
+				chaineBin[j] = '0';
+			}
+		}
+
+	}
+
+	strBin = chaineBin;
+
+	return strBin;
+}
+
 void WEItoCOE(char* nomWei, char* nomTxt){
 	FILE* pFile = fopen(nomWei, "rb");
 	FILE* file = fopen(nomTxt, "w");
@@ -143,9 +180,9 @@ void WEItoCOE(char* nomWei, char* nomTxt){
 	if(pFile != NULL){
 		while(!feof(pFile)){
 			fread(&buf, sizeof(float),1,pFile);
+			printf("%lf\n", buf);
 			str = FLOATtoBIN(buf);
-			fprintf(file, "%.24s\n", str); //Nombre de bits 
-			free(str);
+			fprintf(file, "%s\n", str);
 		}
 	}
 	fclose (pFile);
