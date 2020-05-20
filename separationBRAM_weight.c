@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #define NOM_FICHIER "lw2.txt"
+
+#define BRAMSOMME "BRAM_SOMME.txt"
 #define BRAM1 "BRAM_1.txt"
 #define BRAM1 "BRAM_2.txt"
 #define BRAM1 "BRAM_3.txt"
@@ -24,6 +26,7 @@ char number[32]; //stockage du nombre binaire en complement a 2
 char c[10]; //lecture d'un weight dans lx2.txt
 int bram; //bram a utiliser
 
+FILE * bramsomme;
 FILE * bram1;
 FILE * bram2;
 FILE * bram3;
@@ -71,56 +74,58 @@ void write_bram_data(){
   FILE * temp;
   switch(bram){
     case 1 :
-      temp = bram1;
+      temp = bramsomme;
       break;
     case 2 :
-      temp = bram2;
+      temp = bram1;
       break;
     case 3 :
-      temp = bram3;
+      temp = bram2;
       break;
     case 4 :
-      temp = bram4;
+      temp = bram3;
       break;
     case 5 :
-      temp = bram5;
+      temp = bram4;
       break;
     case 6 :
-      temp = bram6;
+      temp = bram5;
       break;
     case 7 :
-      temp = bram7;
+      temp = bram6;
       break;
     case 8 :
-      temp = bram8;
+      temp = bram7;
       break;
     case 9 :
-      temp = bram9;
+      temp = bram8;
       break;
     case 10 :
-      temp = bram10;
+      temp = bram9;
       break;
     case 11 :
-      temp = bram11;
+      temp = bram10;
       break;
     case 12 :
-      temp = bram12;
+      temp = bram11;
       break;
     case 13 :
-      temp = bram13;
+      temp = bram12;
       break;
     case 14 :
       temp = bram14;
       break;
     case 15 :
-      temp = bram15;
+      temp = bram13;
       break;
+    case 16 :
+      temp = bram15;
     default :
       break;
   }
 
   fprintf(temp, "%s\n", number);
-  if(bram == 15)
+  if(bram == 16)
     bram = 1;
   else
     bram++;
@@ -128,6 +133,11 @@ void write_bram_data(){
 
 
 void open_files(){
+
+  if((bramsomme = fopen(BRAMSOMME, ECRITURE)) == NULL){
+    printf("open failed\n");
+    exit(1);
+  }
   if((bram1 = fopen(BRAM1, ECRITURE)) == NULL){
     printf("open failed\n");
     exit(1);
@@ -191,6 +201,7 @@ void open_files(){
 }
 
 void close_files(){
+  fclose(bramsomme);
   fclose(bram1);
   fclose(bram2);
   fclose(bram3);
