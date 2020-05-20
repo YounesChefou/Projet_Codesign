@@ -62,8 +62,8 @@ void converttion_decimal2binaire_viruglefixe(){
   int add = 0x0001;
   float temp = atof(c);
   int i = (int)(temp * 100000.0) //18 bits complément à 2 impliquent de ne garder que 5 chiffres après la virgule
-  i = ~i; //on inverse les bits
-  i = i + add; //i est en complement à 2 en ajoutant 1
+  //i = ~i; //on inverse les bits
+  //i = i + add; //i est en complement à 2 en ajoutant 1
   itoa(i, number, 2); //ecriture de i dans le buffer number en base 2
 }
 
